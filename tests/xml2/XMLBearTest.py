@@ -15,7 +15,7 @@ valid_xml_file = """<?xml version="1.0"?>
 <a/>
 """
 
-invalid_xml_file = """
+valid_xml_file2 = """
 <a>blah</a>
 """
 
@@ -45,8 +45,8 @@ dtd_url = "http://docs.oasis-open.org/dita/v1.0.1/dtd/concept.dtd"
 
 XMLBearCorrectedTest = verify_local_bear(
     XMLBear,
-    valid_files=(valid_xml_file, valid_xml_chars),
-    invalid_files=(invalid_xml_file, invalid_xml_chars),
+    valid_files=(valid_xml_file, valid_xml_chars, valid_xml_file2),
+    invalid_files=(invalid_xml_chars,),
     tempfile_kwargs={"suffix": ".xml"})
 
 XMLBearSchemaTest = verify_local_bear(
