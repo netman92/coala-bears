@@ -21,6 +21,10 @@ var a = (function() {
 }());
 """
 
+test_es6 = """
+const a = {
+    b = 1
+}"""
 
 jshintconfig = os.path.join(os.path.dirname(__file__),
                             "test_files",
@@ -55,3 +59,15 @@ JSHintBearCoafileTest = verify_local_bear(
     invalid_files=(),
     valid_files=(test_file3, ),
     settings=settings)
+
+JSHintBearDeprecationTest = verify_local_bear(
+    JSHintBear,
+    valid_files=(),
+    invalid_files=(test_es6,),
+    settings={"es_version": 3})
+
+JSHintBearDeprecation2Test = verify_local_bear(
+    JSHintBear,
+    valid_files=(test_es6,),
+    invalid_files=(),
+    settings={"use_es6_syntax": True})

@@ -42,7 +42,8 @@ class JSHintBear:
     CAN_DETECT = {'Formatting', 'Syntax', 'Complexity', 'Unused Code'}
 
     @staticmethod
-    @deprecate_settings(cyclomatic_complexity='maxcomplexity',
+    @deprecate_settings(es_version=('use_es6_syntax', lambda x: 6 if x else 5),
+                        cyclomatic_complexity='maxcomplexity',
                         allow_unused_variables=('prohibit_unused', negate),
                         max_parameters='maxparams',
                         allow_missing_semicolon='allow_missing_semicol',
@@ -102,7 +103,6 @@ class JSHintBear:
                         allow_last_semicolon: bool=False,
                         allow_func_in_loop: bool=False,
                         allow_expr_in_assignments: bool=False,
-                        use_es6_syntax: bool=False,
                         use_es3_array: bool=False,
                         environment_mootools: bool=False,
                         environment_couch: bool=False,
@@ -225,8 +225,6 @@ class JSHintBear:
         :param use_es3_array:
             This option tells JSHintBear ES3 array elision elements, or empty
             elements are used.
-        :param use_es3_array:
-            This option tells JSHint ECMAScript 6 specific syntax is used.
         :param environment_mootools:
             This option defines globals exposed by the Mootools.
         :param environment_couch:
@@ -342,7 +340,6 @@ class JSHintBear:
                        "lastsemic": allow_last_semicolon,
                        "loopfunc": allow_func_in_loop,
                        "expr": allow_expr_in_assignments,
-                       "esnext": use_es6_syntax,
                        "elision": use_es3_array,
                        "mootools": environment_mootools,
                        "couch": environment_couch,
