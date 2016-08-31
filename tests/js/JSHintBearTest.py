@@ -26,6 +26,14 @@ const a = {
     b = 1
 }"""
 
+test_strictness = """
+"use strict";
+
+(function a() {
+  return 0;
+}());
+"""
+
 jshintconfig = os.path.join(os.path.dirname(__file__),
                             "test_files",
                             "jshintconfig.json")
@@ -38,7 +46,8 @@ settings = {
     "shadow": "False",
     "allow_last_semicolon": "True",
     "es_version": 3,
-    "allow_latedef": "no_func"}
+    "allow_latedef": "no_func",
+    "javascript_strictness": "False"}
 
 
 JSHintBearTest = verify_local_bear(JSHintBear,
@@ -63,11 +72,11 @@ JSHintBearCoafileTest = verify_local_bear(
 JSHintBearDeprecationTest = verify_local_bear(
     JSHintBear,
     valid_files=(),
-    invalid_files=(test_es6,),
-    settings={"es_version": 3})
+    invalid_files=(test_es6, test_strictness),
+    settings={"es_version": 3, "javascript_strictness": True})
 
 JSHintBearDeprecation2Test = verify_local_bear(
     JSHintBear,
-    valid_files=(test_es6,),
+    valid_files=(test_es6, test_strictness),
     invalid_files=(),
-    settings={"use_es6_syntax": True})
+    settings={"use_es6_syntax": True, "allow_global_strict": True})
